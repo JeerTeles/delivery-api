@@ -1,4 +1,4 @@
-package com.deliverytech.delivery_api.exception;
+package com.delivery_api.Projeto.delivery.API.exception;
 
 public class ConflictException extends BusinessException {
 

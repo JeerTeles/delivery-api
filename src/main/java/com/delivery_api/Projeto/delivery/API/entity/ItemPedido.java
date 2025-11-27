@@ -1,4 +1,4 @@
-package com.deliverytech.delivery_api.entity;
+package com.delivery_api.Projeto.delivery.API.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,9 +25,9 @@ public class ItemPedido {
 
     @ManyToOne
     @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
+    private com.deliverytech.delivery_api.entity.Pedido pedido;
 
     @ManyToOne
     @JoinColumn(name = "produto_id")
-    private Produto produto;
+    private com.deliverytech.delivery_api.entity.Produto produto;
 }

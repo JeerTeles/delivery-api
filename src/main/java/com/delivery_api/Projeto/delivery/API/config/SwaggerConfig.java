@@ -3,6 +3,8 @@ package com.delivery_api.Projeto.delivery.API.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 public class SwaggerConfig {
     package com.deliverytech.delivery_api.config;
 

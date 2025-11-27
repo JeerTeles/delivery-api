@@ -1,54 +1,43 @@
-package com.deliverytech.delivery_api.dto.request;
+package com.delivery_api.Projeto.delivery.API.dto.request;
 
-import com.deliverytech.delivery_api.validation.ValidCEP;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class PedidoRequestDTO {
-    @Schema(description = "Número do pedido", example = "12345", required = true)
-    @NotNull(message = "O número do pedido é obrigatório")
-    private String numeroPedido;
+@AllArgsConstructor
+public class ProdutoRequestDTO {
+    @Schema(description = "Nome do produto", example = "Pizza Margherita", required = true)
+    @NotNull(message = "O Nome do produto é obrigatório")
+    private String nome;
 
-    @Schema(description = "Data do pedido", example = "2023-10-01", required = true)
-    @NotNull(message = "A data do pedido é obrigatória")
-    private String dataPedido;
+    @Schema(description = "Descrição do produto", example = "Deliciosa pizza com molho de tomate, mussarela e manjericão", required = true)
+    @NotNull(message = "A descrição do produto é obrigatória")
+    private String descricao;
 
-    @Schema(description = "Valor total do pedido", example = "99.99", required = true)
-    @NotNull(message = "O valor do pedido é obrigatório")
-    private BigDecimal valorTotal;
+    @Schema(description = "Preço do produto", example = "29.90", required = true)
+    @NotNull(message = "Preço é obrigatório")
+    @DecimalMin(value = "0.01", message = "Preço deve ser maior que zero")
+    @DecimalMax(value = "500.00", message = "Preço não pode exceder R$ 500,00")
+    private BigDecimal preco;
 
-    @Schema(description = "Observações do pedido", example = "Não colocar cebola")
-    private String observacoes;
+    @Schema(description = "Categoria do produto", example = "Pizzas", required = true)
+    @NotNull(message = "A categoria do produto é obrigatória")
+    private String categoria;
 
-    @Schema(description = "Status do pedido", example = "PENDENTE", required = true)
-    @NotNull(message = "O status do pedido é obrigatório")
-    private Long clienteId;
+    @Schema(description = "Disponibilidade do produto", example = "true", required = true)
+    @NotNull(message = "A disponibilidade do produto é obrigatória")
+    private Boolean disponivel;
 
     @Schema(description = "ID do restaurante", example = "1", required = true)
     @NotNull(message = "O restaurante é obrigatório")
     private Long restauranteId;
 
-    @Schema(description = "Endereço de entrega do pedido", example = "Rua das Flores, 123")
-    private String enderecoEntrega;
-
-    @NotBlank(message = "CEP é obrigatório")
-    @ValidCEP
-    private String cep;
-
-    @Schema(description = "Lista de itens do pedido", required = true)
-    @NotEmpty(message = "Os itens são obrigatórios")
-    @Valid
-    private List<ItemPedidoRequestDTO> itens;
 }

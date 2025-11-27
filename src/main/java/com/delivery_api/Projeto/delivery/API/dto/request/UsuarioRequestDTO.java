@@ -1,4 +1,4 @@
-package com.deliverytech.delivery_api.dto.request;
+package com.delivery_api.Projeto.delivery.API.dto.request;
 
 import com.deliverytech.delivery_api.enums.Role;
 import jakarta.validation.constraints.Email;

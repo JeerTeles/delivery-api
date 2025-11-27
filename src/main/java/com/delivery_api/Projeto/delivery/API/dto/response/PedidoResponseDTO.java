@@ -1,5 +1,5 @@
 
-package com.deliverytech.delivery_api.dto.response;
+package com.delivery_api.Projeto.delivery.API.dto.response;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

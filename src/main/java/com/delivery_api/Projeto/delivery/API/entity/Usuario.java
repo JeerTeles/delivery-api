@@ -1,4 +1,4 @@
-package com.deliverytech.delivery_api.entity;
+package com.delivery_api.Projeto.delivery.API.entity;
 
 import com.deliverytech.delivery_api.enums.Role;
 import jakarta.persistence.*;

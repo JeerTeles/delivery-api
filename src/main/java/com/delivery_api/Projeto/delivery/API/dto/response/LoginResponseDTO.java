@@ -1,5 +1,5 @@
 
-package com.deliverytech.delivery_api.dto.response;
+package com.delivery_api.Projeto.delivery.API.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,5 +12,5 @@ public class LoginResponseDTO {
     private String token;
     private String tipo;
     private Long expiracao;
-    private UsuarioResponseDTO usuario;
+    private com.deliverytech.delivery_api.dto.response.UsuarioResponseDTO usuario;
 }

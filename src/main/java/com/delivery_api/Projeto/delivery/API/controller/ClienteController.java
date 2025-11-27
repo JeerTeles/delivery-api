@@ -1,4 +1,4 @@
-package com.deliverytech.delivery_api.controller;
+package com.delivery_api.Projeto.delivery.API.controller;
 
 import java.util.List;
 

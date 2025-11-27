@@ -1,4 +1,4 @@
-package com.deliverytech.delivery_api.controller;
+package com.delivery_api.Projeto.delivery.API.controller;
 
 import com.deliverytech.delivery_api.dto.request.RestauranteRequestDTO;
 import com.deliverytech.delivery_api.dto.response.ApiResponseWrapper;

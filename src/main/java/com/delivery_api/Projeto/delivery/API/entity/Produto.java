@@ -1,4 +1,4 @@
-package com.deliverytech.delivery_api.entity;
+package com.delivery_api.Projeto.delivery.API.entity;
 
 import java.math.BigDecimal;
 
@@ -30,7 +30,7 @@ public class Produto {
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id")
-    private Restaurante restaurante;
+    private com.deliverytech.delivery_api.entity.Restaurante restaurante;
 
     public boolean isAtivo() {
         return this.disponivel != null && this.disponivel;

@@ -1,4 +1,4 @@
-package com.deliverytech.delivery_api.dto.response;
+package com.delivery_api.Projeto.delivery.API.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
