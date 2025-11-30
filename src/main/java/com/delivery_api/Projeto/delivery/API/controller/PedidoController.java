@@ -32,7 +32,7 @@ public class PedidoController {
             @ApiResponse(responseCode = "400", description = "Dados inválidos"),
             @ApiResponse(responseCode = "409", description = "Pedido já existe")
     })
-    public ResponseEntity<PedidoResponseDTO> criarPedido(@Valid @RequestBody PedidoRequestDTO dto) {
+    public <PedidoRequestDTO, PedidoResponseDTO> ResponseEntity<PedidoResponseDTO> criarPedido(@Valid @RequestBody PedidoRequestDTO dto) {
         PedidoResponseDTO pedido = pedidoService.criarPedido(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(pedido);
     }
@@ -44,7 +44,7 @@ public class PedidoController {
             @ApiResponse(responseCode = "200", description = "Pedido encontrado"),
             @ApiResponse(responseCode = "404", description = "Pedido não encontrado")
     })
-    public ResponseEntity<PedidoResponseDTO> buscarPorId(@PathVariable Long id) {
+    public <PedidoResponseDTO> ResponseEntity<PedidoResponseDTO> buscarPorId(@PathVariable Long id) {
         PedidoResponseDTO pedido = pedidoService.buscarPorId(id);
         return ResponseEntity.ok(pedido);
     }
@@ -56,7 +56,7 @@ public class PedidoController {
             @ApiResponse(responseCode = "200", description = "Pedidos encontrados"),
             @ApiResponse(responseCode = "404", description = "Cliente não encontrado")
     })
-    public ResponseEntity<List<PedidoResponseDTO>> listarPedidosPorCliente(@PathVariable Long clienteId) {
+    public <PedidoResponseDTO> ResponseEntity<List<PedidoResponseDTO>> listarPedidosPorCliente(@PathVariable Long clienteId) {
         List<PedidoResponseDTO> pedidos = pedidoService.listarPedidosPorCliente(clienteId);
         return ResponseEntity.ok(pedidos);
     }
@@ -67,7 +67,7 @@ public class PedidoController {
             @ApiResponse(responseCode = "200", description = "Pedido cancelado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Pedido não encontrado")
     })
-    public ResponseEntity<PedidoResponseDTO> cancelarPedido(@PathVariable Long id) {
+    public <PedidoResponseDTO> ResponseEntity<PedidoResponseDTO> cancelarPedido(@PathVariable Long id) {
         PedidoResponseDTO pedido = pedidoService.cancelarPedido(id);
         return ResponseEntity.ok(pedido);
     }
@@ -78,7 +78,7 @@ public class PedidoController {
             @ApiResponse(responseCode = "200", description = "Valor total calculado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Dados inválidos")
     })
-    public ResponseEntity<BigDecimal> calcularValorTotalPedido(@RequestBody List<ItemPedidoRequestDTO> itens) {
+    public <ItemPedidoRequestDTO> ResponseEntity<BigDecimal> calcularValorTotalPedido(@RequestBody List<ItemPedidoRequestDTO> itens) {
         BigDecimal valorTotal = pedidoService.calcularValorTotalPedido(itens);
         return ResponseEntity.ok(valorTotal);
     }

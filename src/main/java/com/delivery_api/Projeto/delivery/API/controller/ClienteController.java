@@ -32,7 +32,7 @@ public class ClienteController {
             @ApiResponse(responseCode = "404", description = "Requisição inválida"),
             @ApiResponse(responseCode = "409", description = "Cliente já cadastrado")
     })
-    public ResponseEntity<ClienteResponseDTO> cadastrar(@Valid @RequestBody ClienteRequestDTO dto) {
+    public <ClienteResponseDTO, ClienteRequestDTO> ResponseEntity<ClienteResponseDTO> cadastrar(@Valid @RequestBody ClienteRequestDTO dto) {
         ClienteResponseDTO cliente = clienteService.cadastrar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
     }

@@ -38,7 +38,7 @@ public class RestauranteController {
             @ApiResponse(responseCode = "400", description = "Dados inválidos"),
             @ApiResponse(responseCode = "409", description = "Restaurante já existe")
     })
-    public ResponseEntity<RestauranteResponseDTO> cadastrar(@Valid @RequestBody RestauranteRequestDTO dto) {
+    public <RestauranteRequestDTO, RestauranteResponseDTO> ResponseEntity<RestauranteResponseDTO> cadastrar(@Valid @RequestBody RestauranteRequestDTO dto) {
         RestauranteResponseDTO restaurante = restauranteService.cadastrar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(restaurante);
     }
@@ -49,7 +49,7 @@ public class RestauranteController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Lista recuperada com sucesso")
     })
-    public ResponseEntity<ApiResponseWrapper<List<RestauranteResponseDTO>>> listarTodos(
+    public <RestauranteResponseDTO> ResponseEntity<ApiResponseWrapper<List<RestauranteResponseDTO>>> listarTodos(
             @RequestParam(required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataFim,
             @Parameter(description = "Parâmetros de paginação")
@@ -78,7 +78,7 @@ public class RestauranteController {
             @ApiResponse(responseCode = "404", description = "Restaurante não encontrado"),
             @ApiResponse(responseCode = "400", description = "Dados inválidos")
     })
-    public ResponseEntity<RestauranteResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody RestauranteRequestDTO dto) {
+    public <RestauranteResponseDTO, RestauranteRequestDTO> ResponseEntity<RestauranteResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody RestauranteRequestDTO dto) {
         RestauranteResponseDTO restauranteAtualizado = restauranteService.atualizar(id, dto);
         return ResponseEntity.ok(restauranteAtualizado);
     }
@@ -89,7 +89,7 @@ public class RestauranteController {
             @ApiResponse(responseCode = "200", description = "Restaurante atualizado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Restaurante não encontrado")
     })
-    public ResponseEntity<RestauranteResponseDTO> ativarDesativarRestaurante(@PathVariable Long id) {
+    public <RestauranteResponseDTO> ResponseEntity<RestauranteResponseDTO> ativarDesativarRestaurante(@PathVariable Long id) {
         RestauranteResponseDTO restauranteAtualizado = restauranteService.ativarDesativarRestaurante(id);
         return ResponseEntity.ok(restauranteAtualizado);
     }
@@ -100,7 +100,7 @@ public class RestauranteController {
             @ApiResponse(responseCode = "200", description = "Restaurante encontrado"),
             @ApiResponse(responseCode = "404", description = "Restaurante não encontrado")
     })
-    public ResponseEntity<RestauranteResponseDTO> buscarPorNome(@PathVariable String nome) {
+    public <RestauranteResponseDTO> ResponseEntity<RestauranteResponseDTO> buscarPorNome(@PathVariable String nome) {
         RestauranteResponseDTO restaurante = restauranteService.buscarPorNome(nome);
         return ResponseEntity.ok(restaurante);
     }
@@ -111,7 +111,7 @@ public class RestauranteController {
             @ApiResponse(responseCode = "200", description = "Restaurantes encontrados"),
             @ApiResponse(responseCode = "404", description = "Nenhum restaurante encontrado dentro da faixa de preço")
     })
-    public ResponseEntity<List<RestauranteResponseDTO>> buscarPorPreco(@PathVariable BigDecimal precoMinimo, @PathVariable BigDecimal precoMaximo) {
+    public <RestauranteResponseDTO> ResponseEntity<List<RestauranteResponseDTO>> buscarPorPreco(@PathVariable BigDecimal precoMinimo, @PathVariable BigDecimal precoMaximo) {
         List<RestauranteResponseDTO> restaurantes = restauranteService.buscarPorPreco(precoMinimo, precoMaximo);
         return ResponseEntity.ok(restaurantes);
     }
@@ -122,7 +122,7 @@ public class RestauranteController {
             @ApiResponse(responseCode = "200", description = "Restaurantes encontrados"),
             @ApiResponse(responseCode = "404", description = "Nenhum restaurante encontrado na categoria")
     })
-    public ResponseEntity<List<RestauranteResponseDTO>> buscarPorCategoria(@PathVariable String categoria) {
+    public <RestauranteResponseDTO> ResponseEntity<List<RestauranteResponseDTO>> buscarPorCategoria(@PathVariable String categoria) {
         List<RestauranteResponseDTO> restaurantes = restauranteService.buscarPorCategoria(categoria);
         return ResponseEntity.ok(restaurantes);
     }
@@ -134,7 +134,7 @@ public class RestauranteController {
             @ApiResponse(responseCode = "200", description = "Restaurante inativado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Restaurante não encontrado")
     })
-    public ResponseEntity<RestauranteResponseDTO> inativarRestaurante(@PathVariable Long id) {
+    public <RestauranteResponseDTO> ResponseEntity<RestauranteResponseDTO> inativarRestaurante(@PathVariable Long id) {
         RestauranteResponseDTO restauranteInativado = restauranteService.inativarRestaurante(id);
         return ResponseEntity.ok(restauranteInativado);
     }
@@ -146,7 +146,7 @@ public class RestauranteController {
             @ApiResponse(responseCode = "200", description = "Restaurantes encontrados"),
             @ApiResponse(responseCode = "404", description = "Nenhum restaurante encontrado com a taxa de entrega especificada")
     })
-    public ResponseEntity<List<RestauranteResponseDTO>> buscarPorTaxaEntrega(@RequestParam BigDecimal taxa) {
+    public <RestauranteResponseDTO> ResponseEntity<List<RestauranteResponseDTO>> buscarPorTaxaEntrega(@RequestParam BigDecimal taxa) {
         List<RestauranteResponseDTO> restaurantes = restauranteService.buscarPorTaxaEntrega(taxa);
         return ResponseEntity.ok(restaurantes);
     }
@@ -158,7 +158,7 @@ public class RestauranteController {
             @ApiResponse(responseCode = "200", description = "Lista dos 5 restaurantes mais populares retornada com sucesso"),
             @ApiResponse(responseCode = "404", description = "Nenhum restaurante encontrado")
     })
-    public ResponseEntity<List<RestauranteResponseDTO>> listarTop5PorNome() {
+    public <RestauranteResponseDTO> ResponseEntity<List<RestauranteResponseDTO>> listarTop5PorNome() {
         List<RestauranteResponseDTO> top5Restaurantes = restauranteService.listarTop5PorNome();
         return ResponseEntity.ok(top5Restaurantes);
     }
@@ -170,7 +170,7 @@ public class RestauranteController {
             @ApiResponse(responseCode = "200", description = "Relatório de vendas gerado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Nenhum dado de vendas encontrado")
     })
-    public ResponseEntity<List<RelatorioVendas>> relatorioVendasPorRestaurante() {
+    public <RelatorioVendas> ResponseEntity<List<RelatorioVendas>> relatorioVendasPorRestaurante() {
         List<RelatorioVendas> relatorio = restauranteService.relatorioVendasPorRestaurante();
         return ResponseEntity.ok(relatorio);
     }

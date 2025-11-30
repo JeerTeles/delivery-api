@@ -29,7 +29,7 @@ public class AuthController {
             @ApiResponse(responseCode = "400", description = "Dados inválidos"),
             @ApiResponse(responseCode = "409", description = "Email já cadastrado")
     })
-    public ResponseEntity<UsuarioResponseDTO> cadastrar(@Valid @RequestBody UsuarioRequestDTO dto) {
+    public <UsuarioRequestDTO, UsuarioResponseDTO> ResponseEntity<UsuarioResponseDTO> cadastrar(@Valid @RequestBody UsuarioRequestDTO dto) {
         UsuarioResponseDTO login = usuarioService.cadastrar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(login);
     }
@@ -41,7 +41,7 @@ public class AuthController {
             @ApiResponse(responseCode = "401", description = "Credenciais ou Token inválidos"),
             @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
     })
-    public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequestDTO dto) {
+    public <LoginRequestDTO, LoginResponseDTO> ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequestDTO dto) {
         LoginResponseDTO login = usuarioService.login(dto);
         return ResponseEntity.ok(login);
     }

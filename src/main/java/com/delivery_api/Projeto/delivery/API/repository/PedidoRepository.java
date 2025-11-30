@@ -13,18 +13,18 @@ import com.deliverytech.delivery_api.enums.StatusPedido;
 public interface PedidoRepository extends JpaRepository <Pedido, Long> {
 
     // Buscar pedidos por cliente ID
-    List<Pedido> findByClienteIdOrderByDataPedidoDesc(Long clienteId);
+    <Pedido> List<Pedido> findByClienteIdOrderByDataPedidoDesc(Long clienteId);
 
     // Pedidos por cliente
-    List<Pedido> findByClienteId(Long clienteId);
+    <Pedido> List<Pedido> findByClienteId(Long clienteId);
 
     // Pedidos por status
-    List<Pedido> findByStatus(StatusPedido status);
+    <Pedido, StatusPedido> List<Pedido> findByStatus(StatusPedido status);
 
     // 10 pedidos mais recentes
-    List<Pedido> findTop10ByOrderByDataPedidoDesc();
+    <Pedido> List<Pedido> findTop10ByOrderByDataPedidoDesc();
 
     // Pedidos por período
-    List<Pedido> findByDataPedidoBetween(LocalDateTime inicio, LocalDateTime fim);
+    <Pedido> List<Pedido> findByDataPedidoBetween(LocalDateTime inicio, LocalDateTime fim);
 
 }

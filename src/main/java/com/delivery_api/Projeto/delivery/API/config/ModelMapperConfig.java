@@ -11,6 +11,7 @@ public class ModelMapperConfig {
     @Bean
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
+        Object MatchingStrategies = null;
         modelMapper.getConfiguration()
                 .setMatchingStrategy(MatchingStrategies.LOOSE)
                 .setFieldMatchingEnabled(true)
